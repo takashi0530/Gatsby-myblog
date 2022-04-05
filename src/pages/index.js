@@ -23,14 +23,16 @@ const PostItem = (props) => {
 const IndexPage = (props) => {
   return (
     <ul>
-      {props.data.allFeedQiita.nodes.map((post) => {
-        return <PostItem post={post} key={post.link} />
-      })}
 
       {/* aboutページへのリンク */}
       {/* <Link to="/about">Link to about</Link> */}
 
-      {/* GraphQL データの表示 */}
+      {/* GraphQL データの表示 ＜形を整えて出力＞ */}
+      {props.data.allFeedQiita.nodes.map((post) => {
+        return <PostItem post={post} key={post.link} />
+      })}
+
+      {/* GraphQL データの表示 ＜JSONを出力＞ */}
       {/* <pre>{JSON.stringify(props.data, null, 2)}</pre> */}
 
     </ul>
@@ -49,5 +51,26 @@ export const query = graphql`
     }
   }
 `;
+
+// export const query = graphql`
+//   query MyQuery {
+//     allFeedQiita(limit: 3) {
+//       nodes {
+//         title
+//         link
+//         pubDate(formatString: "YYYY.MM.DD")
+//       }
+//     }
+//     allWorksYaml(limit: 4) {
+//       nodes {
+//         slug
+//         title
+//         description
+//         imageUrl
+//         roles
+//       }
+//     }
+//   }
+// `;
 
 export default IndexPage;
